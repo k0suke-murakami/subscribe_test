@@ -21,9 +21,10 @@
 
 #include "rclcpp/rclcpp.hpp"
 
-#include "autoware_planning_msgs/msg/path.hpp"
-#include "autoware_planning_msgs/msg/path_with_lane_id.hpp"
-#include "autoware_planning_msgs/msg/trajectory.hpp"
+#include "sensor_msgs/msg/point_cloud2.hpp"
+// #include "autoware_planning_msgs/msg/path.hpp"
+// #include "autoware_planning_msgs/msg/path_with_lane_id.hpp"
+// #include "autoware_planning_msgs/msg/trajectory.hpp"
 
 class SubscribeTest : public rclcpp::Node
 {
@@ -32,21 +33,36 @@ public:
 
 private:
   // subscriber
-  rclcpp::Subscription<autoware_planning_msgs::msg::Path>::SharedPtr sub_path_;
-  rclcpp::Subscription<autoware_planning_msgs::msg::PathWithLaneId>::SharedPtr
-    sub_path_with_lane_id_;
+  rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr sub_path_;
+  // rclcpp::Subscription<sensor_msgs::msg::PointCloud2PathWithLaneId>::SharedPtr
+  //   sub_path_with_lane_id_;
 
   // variable
   std::mutex mutex_;
-  autoware_planning_msgs::msg::Path path_;
-  int count = 0 ;
-  
+  // autoware_planning_msgs::msg::Path path_;
+  int count = 0;
 
   // callback function
-  void callbackAutowarePath(const autoware_planning_msgs::msg::Path::ConstSharedPtr msg_ptr);
+  void callbackAutowarePath(const sensor_msgs::msg::PointCloud2::ConstSharedPtr msg_ptr);
 
-  void callbackAutowarePathWithLaneId(
-    const autoware_planning_msgs::msg::PathWithLaneId::ConstSharedPtr msg_ptr);
+  // void callbackAutowarePathWithLaneId(
+  //   const autoware_planning_msgs::msg::PathWithLaneId::ConstSharedPtr msg_ptr);
+
+  // // subscriber
+  // rclcpp::Subscription<autoware_planning_msgs::msg::Path>::SharedPtr sub_path_;
+  // rclcpp::Subscription<autoware_planning_msgs::msg::PathWithLaneId>::SharedPtr
+  //   sub_path_with_lane_id_;
+
+  // // variable
+  // std::mutex mutex_;
+  // autoware_planning_msgs::msg::Path path_;
+  // int count = 0 ;
+
+  // // callback function
+  // void callbackAutowarePath(const autoware_planning_msgs::msg::Path::ConstSharedPtr msg_ptr);
+
+  // void callbackAutowarePathWithLaneId(
+  //   const autoware_planning_msgs::msg::PathWithLaneId::ConstSharedPtr msg_ptr);
 };
 
-#endif  // SUBSCRIBE_TEST__SUBSCRIBE_TEST_CORE_HPP_
+#endif // SUBSCRIBE_TEST__SUBSCRIBE_TEST_CORE_HPP_
